@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "ecommerce-ebac-68306",
+    "ecommerce": "ecommerce-ebac-68306"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

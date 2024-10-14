@@ -54,6 +54,7 @@ header .header__i {
 }
 
 .products {
+  margin: 50px;
   width: 80%;
   margin: 0 auto;
   display: grid;
@@ -74,20 +75,58 @@ header .header__i {
   -o-object-fit: cover;
      object-fit: cover;
   margin-bottom: 15px;
+  margin-top: 15px;
 }
 .products article {
   text-align: center;
+  border: 2px solid white;
+  margin: 10%;
+}
+.products button {
+  font: inherit;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 90%;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.products button:hover {
+  background-color: #660000;
+  color: #fff;
+  scale: 0.95;
 }
 
 .cart {
-  width: 500px;
+  width: 30%;
   background-color: #fff;
   padding: 25px;
-  height: 100%;
+  max-height: 500px;
   position: fixed;
-  right: -100%;
+  right: -50%;
   top: 100px;
+  transition: all 0.3s ease-in-out;
   box-shadow: -19px -1px -15px rgba(255, 255, 255, 0.3);
+  overflow-y: scroll;
+}
+.cart i {
+  margin-left: auto;
+  margin-right: 15px;
+}
+.cart.show {
+  right: 0;
+}
+.cart__title {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 15px;
 }
 .cart__h2 {
   width: 100%;
@@ -103,16 +142,26 @@ header .header__i {
   align-items: center;
   padding: 15px;
 }
-.cart__div .cart__i {
+.cart__div .cart__img {
+  width: 100px;
+  max-width: 100px;
+}
+.cart button {
+  font: inherit;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 90%;
+  font-weight: 500;
   cursor: pointer;
-  width: auto;
+  transition: all 0.3s ease-in-out;
 }
-.cart__div img {
-  width: 60px;
-}
-.cart__div p:nth-of-type(1) {
-  font-size: 15px;
-  font-weight: 800;
+.cart button:hover {
+  background-color: #660000;
+  color: #fff;
+  scale: 0.95;
 }
 
 @media (max-width: 820px) {
@@ -131,10 +180,6 @@ header .header__i {
     -o-object-fit: cover;
        object-fit: cover;
     margin-bottom: 15px;
-  }
-  .cart {
-    width: 400px;
-    top: 80px;
   }
 }
 @media (max-width: 480px) {
@@ -178,16 +223,19 @@ header .header__i {
     align-items: center;
   }
   .cart__img {
-    width: 100px;
-    align-items: center;
+    width: 60px;
+    max-width: 60px;
   }
   .cart__p {
     margin: 0;
+  }
+  .cart .show {
+    display: none;
   }
 }
 @media (hover: hover) {
   .products article:hover img {
     transition: 0.3s;
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 }/*# sourceMappingURL=styles.css.map */

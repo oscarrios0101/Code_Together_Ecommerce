@@ -10,6 +10,7 @@ $primary-color: #333;
 $secondary-color: #fff;
 $tertiary-color: whitesmoke;
 $primary-body-color: #999;
+$button-hover: #660000; // dark red
 
 body {
   width: 100%;
@@ -65,6 +66,7 @@ header {
 }
 
 .products {
+  margin: 50px;
   width: 80%;
   margin: 0 auto;
   display: grid;
@@ -86,21 +88,63 @@ header {
     max-height: 250px;
     object-fit: cover;
     margin-bottom: 15px;
+    margin-top: 15px;
   }
 
   article {
     text-align: center;
+    border: 2px solid white;
+    margin: 10%;
+  }
+
+  button {
+    font: inherit;
+    background-color: $secondary-color;
+    color: $primary-color;
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  button:hover {
+    background-color: $button-hover;
+    color: $secondary-color;
+    scale: 0.95;
   }
 }
 .cart {
-  width: 500px;
-  background-color: #fff;
+  width: 30%;
+  background-color: $secondary-color;
   padding: 25px;
-  height: 100%;
+  max-height: 500px;
   position: fixed;
-  right: -100%;
+  right: -50%;
   top: 100px;
+  transition: all 0.3s ease-in-out;
   box-shadow: -19px -1px -15px rgba(255, 255, 255, 0.3);
+  overflow-y: scroll;
+  i {
+    margin-left: auto;
+    margin-right: 15px;
+  }
+
+  &.show {
+    right: 0;
+  }
+
+  &__title {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 15px;
+  }
 
   &__h2 {
     width: 100%;
@@ -115,18 +159,27 @@ header {
     @include flex;
     padding: 15px;
 
-    .cart__i {
-      cursor: pointer;
-      width: auto;
+    .cart__img {
+      width: 100px;
+      max-width: 100px;
     }
+  }
 
-    img {
-      width: 60px;
-    }
-
-    p:nth-of-type(1) {
-      font-size: 15px;
-      font-weight: 800;
+  button {
+    font: inherit;
+    background-color: $primary-color;
+    color: $secondary-color;
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: $button-hover;
+      color: $secondary-color;
+      scale: 0.95;
     }
   }
 }
@@ -149,11 +202,6 @@ header {
     max-height: 250px;
     object-fit: cover;
     margin-bottom: 15px;
-  }
-
-  .cart {
-    width: 400px;
-    top: 80px;
   }
 }
 
@@ -207,18 +255,22 @@ header {
   }
 
   .cart__img {
-    width: 100px;
-    align-items: center;
+    width: 60px;
+    max-width: 60px;
   }
 
   .cart__p {
     margin: 0;
+  }
+
+  .cart .show {
+    display: none;
   }
 }
 
 @media (hover: hover) {
   .products article:hover img {
     transition: 0.3s;
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 }
