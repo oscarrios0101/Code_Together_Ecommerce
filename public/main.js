@@ -6,7 +6,7 @@ const cerrarCarrito = document.querySelector("#cerrar-carrito");
 const borrarProductos = document.querySelectorAll("#borrar-producto");
 
 const acumuladorDePrecios = [];
-
+const carrito = [];
 //funcion para crear productos
 const products = [
   { nombre: "Chamarra", precio: 1000, imagen: "img/black_shirt.jpg" },
@@ -14,7 +14,7 @@ const products = [
   { nombre: "Hoodie", precio: 3500, imagen: "img/brown_hoddie.jpg" },
 ];
 
-// Función para obtener un producto aleatorio del array original
+// Funcion para obtener un producto aleatorio del array original
 function obtenerProductoAleatorio() {
   const indiceAleatorio = Math.floor(Math.random() * products.length);
   return products[indiceAleatorio];
@@ -27,21 +27,27 @@ for (let i = 0; i < 10; i++) {
 //funcion para agregar un elemento al grid de productos
 const productosContainer = document.querySelector("#products");
 productosAleatorios.forEach((producto) => {
-  const article = document.createElement("article");
-  article.innerHTML = `
-    
-      <img class="products__img" src="${producto.imagen}" alt="${producto.nombre}">
-      <h3 class="products__h3">${producto.nombre}</h3>
-      <p class="products__p">$${producto.precio}</p>
-      <button id="boton-comprar">Comprar</button>
-    `;
+  const template = document.getElementById("grid-product");
+  const article = template.content.cloneNode(true);
+
+  article.querySelector(".products__img").src = producto.imagen;
+  article.querySelector(".products__h3").textContent = producto.nombre;
+  article.querySelector(".products__img").alt = producto.nombre;
+  article.querySelector(".products__p").textContent = `$${producto.precio}`;
+
   productosContainer.appendChild(article);
 });
+
+// funcion para agregar un ID unico a cada elemento del productosContainer
 
 //funcion para agregar un event listener a los botones del carrito y obtener la informacion
 productosContainer.addEventListener("click", (event) => {
   if (event.target.id === "boton-comprar") {
-    console.log("Se agregó un producto al carrito");
+    console.log("Se agrego un producto al carrito");
+
+    // Obtener el identificador unico del elemento
+    const uniqueId = crypto.randomUUID().slice(0, 10);
+    console.log("uniqueId:", uniqueId);
     const article = event.target.parentNode;
     const productName = article.querySelector(".products__h3").textContent;
     const productPrice = article.querySelector(".products__p").textContent;
@@ -50,50 +56,34 @@ productosContainer.addEventListener("click", (event) => {
       nombre: productName,
       precio: productPrice,
       imagen: productImage,
+      id: uniqueId,
     };
+
+    console.log(productObject);
     agregarAlCarrito(productObject);
   }
 });
 
 // funcion para agregar un elemento dentro del carrito
 function agregarAlCarrito(product) {
-  const cart = document.querySelector(".cart");
-  const cartContent = document.createElement("div");
-  cartContent.innerHTML = ` 
-    <div class="cart__div">
-      <img class="cart__img" src="${product.imagen}" alt="${product.nombre}">
-      <p class="cart__p">${product.nombre}</p>
-      <p class="cart__p">$${product.precio}</p>
-      <i class="cart__i" id="borrar-producto" data-feather="x"></i>
-    </div>
-    `;
-  acumuladorDePrecios.push(parseFloat(product.precio.replace("$", ""))); // Elimina el símbolo de dólar y convierte a número  actualizarTotal();
-  actualizarTotal();
+  const template = document.getElementById("cart-product-template");
+  const cartContent = template.content.cloneNode(true);
+  cartContent.querySelector("#nombre-producto").textContent = product.nombre;
+  // colocar el precio en string
+  cartContent.querySelector(
+    "#precio-producto"
+  ).textContent = `${product.precio}`;
+  cartContent.querySelector(".cart__img").src = product.imagen;
+  carrito.push(product);
+
   cart.appendChild(cartContent);
   feather.replace();
 }
 
-// funcion para borrar un elemento del carrito, la delegacion de enventos es genial
-cart.addEventListener("click", (event) => {
-  if (event.target.id === "borrar-producto") {
-    const article = event.target.parentNode;
-    article.remove();
-  }
-});
-
-function actualizarTotal() {
-  console.log("actualizarTotal llamada");
-  console.log("acumuladorDePrecios:", acumuladorDePrecios);
-  const total = acumuladorDePrecios.reduce((a, b) => a + parseInt(b, 10), 0);
-  console.log("total:", total);
-  const totalElement = document.querySelector(".total");
-  console.log("totalElement:", totalElement);
-  if (totalElement) {
-    totalElement.textContent = `${total.toFixed(2)}`;
-  } else {
-    console.error("Elemento .total no encontrado");
-  }
+function sumarPrecios(carrito) {
+  return carrito.reduce((total, producto) => total + producto.precio, 0);
 }
+
 // funcion para cerrar el carrito
 cerrarCarrito.addEventListener("click", () => {
   const cart = document.querySelector(".cart");

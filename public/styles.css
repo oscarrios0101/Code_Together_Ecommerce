@@ -101,12 +101,12 @@ header .header__i {
 }
 
 .cart {
-  width: 30%;
+  min-width: 450px;
   background-color: #fff;
   padding: 25px;
   max-height: 500px;
   position: fixed;
-  right: -50%;
+  right: -100%;
   top: 100px;
   transition: all 0.3s ease-in-out;
   box-shadow: -19px -1px -15px rgba(255, 255, 255, 0.3);
@@ -168,6 +168,13 @@ header .header__i {
   header {
     padding: 15px;
   }
+  .cart {
+    position: fixed;
+    right: -100%;
+  }
+  .cart.show {
+    width: 450px;
+  }
   .banner__img {
     width: 100%;
   }
@@ -183,8 +190,28 @@ header .header__i {
   }
 }
 @media (max-width: 480px) {
+  section .cart.show {
+    width: 100%;
+  }
   .banner {
     padding: 30px 0;
+  }
+  .cart {
+    right: -100%;
+  }
+  .cart.show {
+    width: 100%;
+  }
+  .cart__div {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the button vertically */
+    width: 100%;
+  }
+  .cart__div button {
+    background-color: red;
+    width: 50%;
+    margin: 0 auto;
   }
   .banner__img {
     width: 100%;
@@ -213,6 +240,7 @@ header .header__i {
   }
   .cart {
     width: 100%;
+    height: auto;
     box-shadow: none;
   }
   .cart__h2 {

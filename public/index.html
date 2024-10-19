@@ -33,90 +33,29 @@
         <p class="banner__p">Conoce nuestros productos nuevos</p>
       </section>
       <section class="products" id="products">
-        <!-- <article>
-          <img
-            class="products__img"
-            src="img/black_shirt.jpg"
-            alt="Cmisa negra"
-          />
-          <h3 class="products__h3">Camisa Negra</h3>
-          <p class="products__p">$1000</p>
-          <button>Comprar</button>
-        </article>
-        <article>
-          <img
-            class="products__img"
-            src="img/blue_shirt.jpg"
-            alt="camisa azul"
-          />
-          <h3 class="products__h3">Camiza Azul</h3>
-          <p class="products__p">$2500</p>
-          <button>Comprar</button>
-        </article>
-        <article>
-          <img
-            class="products__img"
-            src="img/brown_hoddie.jpg"
-            alt="imagen del sitio"
-          />
-          <h3 class="products__h3">Hoodie Cafe</h3>
-          <p class="products__p">$3500</p>
-          <button>Comprar</button>
-        </article>
-        <article>
-          <img
-            class="products__img"
-            src="img/black_shirt.jpg"
-            alt="Cmisa negra"
-          />
-          <h3 class="products__h3">Camisa Negra</h3>
-          <p class="products__p">$1000</p>
-          <button>Comprar</button>
-        </article>
-        <article>
-          <img
-            class="products__img"
-            src="img/blue_shirt.jpg"
-            alt="camisa azul"
-          />
-          <h3 class="products__h3">Camiza Azul</h3>
-          <p class="products__p">$2500</p>
-          <button>Comprar</button>
-        </article>
-        <article>
-          <img
-            class="products__img"
-            src="img/brown_hoddie.jpg"
-            alt="imagen del sitio"
-          />
-          <h3 class="products__h3">Hoodie Cafe</h3>
-          <p class="products__p">$3500</p>
-          <button>Comprar</button> -->
+        <template id="grid-product">
+          <article>
+            <img class="products__img" src="" alt="" />
+            <h3 class="products__h3"></h3>
+            <p class="products__p"></p>
+            <button id="boton-comprar">Comprar</button>
+          </article>
+        </template>
       </section>
       <section class="cart">
         <div class="cart__div">
           <p class="cart__p">Carrito</p>
           <i class="cart__i" id="cerrar-carrito" data-feather="x"></i>
         </div>
+        <template id="cart-product-template">
+          <div class="cart__div">
+            <img class="cart__img" src="" alt="" />
+            <p id="nombre-producto"></p>
+            <p id="precio-producto"></p>
+            <i class="cart__i" id="borrar-producto" data-feather="x"></i>
+          </div>
+        </template>
 
-        <!-- <div class="cart__div">
-          <img class="cart__img" src="img/black_shirt.jpg" alt="" />
-          <p class="cart__p">Chamarra</p>
-          <p class="cart__p">$1000</p>
-          <i class="cart__i" id="borrar-producto" data-feather="x"></i>
-        </div>
-        <div class="cart__div">
-          <img class="cart__img" src="img/black_shirt.jpg" alt="" />
-          <p class="cart__p">Chamarra</p>
-          <p class="cart__p">$1000</p>
-          <i class="cart__i" id="borrar-producto" data-feather="x"></i>
-        </div>
-        <div class="cart__div">
-          <img class="cart__img" src="img/black_shirt.jpg" alt="" />
-          <p class="cart__p">Chamarra</p>
-          <p class="cart__p">$1000</p>
-          <i class="cart__i" id="borrar-producto" data-feather="x"></i>
-        </div> -->
         <div class="cart__div">
           <button>Proceder a la compra</button>
         </div>
@@ -130,8 +69,4 @@
   <script>
     feather.replace();
   </script>
-  <!-- <script
-    src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"
-    defer
-  ></script> -->
 </html>
